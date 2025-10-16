@@ -1,3 +1,5 @@
+
+
 function findWithdrawButton() {
   const keywords = ["withdraw", "revoke", "manage consent", "cookie settings"];
 
@@ -24,7 +26,6 @@ function findWithdrawButton() {
 document.addEventListener("DOMContentLoaded", () => {
   const btn = findWithdrawButton();
   if (btn) {
-    
     console.log("found witdrawl button")
   } else {
     console.log("No withdraw button detected.");
