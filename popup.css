@@ -6,8 +6,10 @@
 
 body {
     margin: 0;
-    width: 300px;
+    width: 420px;
+    /* height: 300px; */
     font-family: Instrument_Sans;
+    background: #FBFBFE;
 }
 
 header {
@@ -20,11 +22,28 @@ header {
    
 }
 
+header img {
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.header_widget_container{
+    display: flex;
+    justify-content: center;
+}
 header h1 {
-  font-size: 28px;
+  font-size: 38;
   color: #DEDCFF;
-  padding-left: 10px;
+  padding-left: 16px;
   position: relative;
+}
+
+.spacer_1{
+    width: 40px;
+    height: 100%;
+    background: #2F27CE;
 }
 
 header button {
@@ -34,6 +53,9 @@ header button {
   border-radius: 34px;
   position: relative;
   border: none;
+  justify-self: center; 
+  cursor: pointer;
+  
 }
 
 header button::before {
@@ -49,9 +71,51 @@ content: "";
   transition: transform 0.3s;
 }
 
+.transition {
+   
+    height: 7px;
+    width: 100%;
+    background: linear-gradient(#2F27CE, #FBFBFE);
+    
+}
+
+
+section{
+    display: flex;
+    /* background: red; */
+}
+
+.text_container {
+    
+    padding-left: 20px;
+    width: 70%;
+    font-size: 18
+}
+
+.text_container a {
+    color: #012036;
+    text-decoration: underline;
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24;
+    font-weight: 500;
+}
+
+.score_container {
+    text-align: center;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
 .buttons_container {
     display: flex;
     justify-content: space-around;
+    
 }
 
 .buttons_container button{
@@ -59,8 +123,30 @@ content: "";
     border: none;
 }
 
+.buttons_container button p{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
 .buttons_container button:hover{
     cursor: pointer;
+}
+
+.button_download {
+    color: #050315;
+    font-size: 16;
+    font-weight: 500;
+    background: #E5E5E5;
+}
+
+.button_varsle {
+    background: #433BFF;
+    color: #FBFBFE;
+    width: 50%;
+    font-size: 20;
 }
 
 
