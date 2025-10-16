@@ -123,10 +123,10 @@ header svg {
     cursor: pointer;
 }
 
-header svg:hover{
-    transform: rotate(100deg);
-    fill: #A9A9A9;
-
+header svg:hover,
+header svg.active {
+  transform: rotate(100deg);
+  fill: #A9A9A9;
 }
 
 
@@ -213,4 +213,45 @@ h2 {
     height: 10px;
     width: 100%;
     position: relative;
+}
+
+.text_setting_containers {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text_setting_containers div {
+    margin: 0.7em;
+}
+
+.toggle_button {
+  width: 48px;
+  height: 28px;
+  background-color: #A9A9A9; 
+  border-radius: 27.2px;
+  position: relative;
+  border: none;
+  justify-self: center; 
+  cursor: pointer;
+}
+
+.toggle_button::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 1.6px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle_button.active::before {
+  transform: translateX(22.2px); /* moves the knob to the right */
+}
+
+.toggle_button.active {
+  background-color: #433BFF; /* optional green "on" color */
 }
