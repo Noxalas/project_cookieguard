@@ -1,11 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "Cookie Guard",
-  "version": "1.0.0",
-  "action": { 
-    "default_popup": "popup.html",
-    "default_icon": "./assets/icon.png"
-    }
-
-
+  "name": "CookieGuard",
+  "version": "1.0",
+  "description": "Detect and report cookie policy violations and deceptive consent patterns.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "storage",
+    "scripting",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
 }

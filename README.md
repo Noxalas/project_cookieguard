@@ -1,2 +1,2 @@
-# Project CookieGuard
-An extension that tracks cookie privacy violations and helps the user compile a report for Datatilsynet.
+# CookiesGuard
+Browser extension prototype to detect cookie consent dark patterns and generate GDPR violation reports
