@@ -16,10 +16,10 @@ git commit -m "$message"
 git push
 
 echo "Gruppen sin push "
-git push origin  https://github.com/Noxalas/project_cookieguard.git
+git push origin main
 
 echo "Egen push "
 
-git push backup  https://github.com/Meron07/CookiesGuard.git
+git push backup main
 
 echo "$message"
