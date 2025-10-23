@@ -208,6 +208,60 @@ h2 {
     font-size: 20;
 }
 
+/* Cookie consent button styles */
+.cookie-button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.cookie-reject {
+    background-color: #FF3B30;
+    color: white;
+    border-color: #FF3B30;
+}
+
+.cookie-reject:hover {
+    background-color: #E0321F;
+    border-color: #E0321F;
+}
+
+.cookie-allow {
+    background-color: #34C759;
+    color: white;
+    border-color: #34C759;
+}
+
+.cookie-allow:hover {
+    background-color: #2DAE4E;
+    border-color: #2DAE4E;
+}
+
+.cookie-legitimate {
+    background-color: #FF9500;
+    color: white;
+    border-color: #FF9500;
+}
+
+.cookie-legitimate:hover {
+    background-color: #E68600;
+    border-color: #E68600;
+}
+
+.cookie-settings {
+    background-color: #5856D6;
+    color: white;
+    border-color: #5856D6;
+}
+
+.cookie-settings:hover {
+    background-color: #4644B5;
+    border-color: #4644B5;
+}
 
 .spacer {
     height: 10px;
