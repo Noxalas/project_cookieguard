@@ -195,17 +195,31 @@ h2 {
 }
 
 .button_download {
-    color: #050315;
+    color: white;
     font-size: 16;
     font-weight: 500;
-    background: #E5E5E5;
+    background: #34C759;  /* Changed to a clear green color */
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 10px 20px;
+}
+
+.button_download:hover {
+    background: #2DAE4E;
 }
 
 .button_varsle {
-    background: #433BFF;
-    color: #FBFBFE;
+    background: #FF3B30;  /* Changed to high-contrast red */
+    color: white;
     width: 50%;
     font-size: 20;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 10px 20px;
+}
+
+.button_varsle:hover {
+    background: #E0321F;
 }
 
 /* Cookie consent button styles */
