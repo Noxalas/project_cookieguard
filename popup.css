@@ -1,13 +1,55 @@
 @font-face {
-    font-family: Instrument_Sans;
-    src: url(https://fonts.google.com/specimen/Instrument+Sans);
+  font-family: 'Instrument Sans';
+  src: url('/assets/fonts/InstrumentSans-Regular.woff2') format('woff2'),
+       url('/assets/fonts/InstrumentSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/assets/fonts/InstrumentSans-Medium.woff2') format('woff2'),
+       url('/assets/fonts/InstrumentSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/assets/fonts/InstrumentSans-SemiBold.woff2') format('woff2'),
+       url('/assets/fonts/InstrumentSans-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/assets/fonts/InstrumentSans-Bold.woff2') format('woff2'),
+       url('/assets/fonts/InstrumentSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.hidden{
+    display: none;
+    text-shadow: 5px 5px ;
+}
+
+.gray {
+    background: #B9B9B9   !important;
+    
+}
 
 body {
     margin: 0;
-    width: 300px;
-    font-family: Instrument_Sans;
+    width: 420px;
+    /* height: 300px; */
+    font-family: Instrument_Sans, sans-serif;
+    background: #FBFBFE;
 }
 
 header {
@@ -20,11 +62,23 @@ header {
    
 }
 
+
+.header_widget_container{
+    display: flex;
+    justify-content: center;
+}
+
 header h1 {
-  font-size: 28px;
+  font-size: 38;
   color: #DEDCFF;
-  padding-left: 10px;
+  padding-left: 16px;
   position: relative;
+}
+
+.spacer_1{
+    width: 40px;
+    height: 100%;
+    background: #2F27CE;
 }
 
 header button {
@@ -34,6 +88,9 @@ header button {
   border-radius: 34px;
   position: relative;
   border: none;
+  justify-self: center; 
+  cursor: pointer;
+  
 }
 
 header button::before {
@@ -49,9 +106,75 @@ content: "";
   transition: transform 0.3s;
 }
 
+header button.active::before {
+  transform: translateX(-26px); /* moves the knob to the right */
+}
+
+header button.active {
+  background-color: #A9A9A9; /* optional green "on" color */
+}
+
+header svg {
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    transition: transform 0.6s ease, fill 0.3s ease;
+    fill: white; 
+    cursor: pointer;
+}
+
+header svg:hover,
+header svg.active {
+  transform: rotate(100deg);
+  fill: #A9A9A9;
+}
+
+
+.transition {
+   
+    height: 7px;
+    width: 100%;
+    background: linear-gradient(#2F27CE, #FBFBFE);
+    
+}
+
+
+.text_score_container{
+    display: flex;
+    /* background: red; */
+}
+
+.text_container {
+    
+    padding-left: 20px;
+    width: 70%;
+    font-size: 18
+}
+
+.text_container a {
+    color: #012036;
+    text-decoration: underline;
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24;
+    font-weight: 500;
+}
+
+.score_container {
+    text-align: center;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
 .buttons_container {
     display: flex;
     justify-content: space-around;
+    
 }
 
 .buttons_container button{
@@ -59,13 +182,144 @@ content: "";
     border: none;
 }
 
+.buttons_container button p{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
 .buttons_container button:hover{
     cursor: pointer;
 }
 
+.button_download {
+    color: white;
+    font-size: 16;
+    font-weight: 500;
+    background: #34C759;  /* Changed to a clear green color */
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 10px 20px;
+}
+
+.button_download:hover {
+    background: #2DAE4E;
+}
+
+.button_varsle {
+    background: #FF3B30;  /* Changed to high-contrast red */
+    color: white;
+    width: 50%;
+    font-size: 20;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 10px 20px;
+}
+
+.button_varsle:hover {
+    background: #E0321F;
+}
+
+/* Cookie consent button styles */
+.cookie-button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.cookie-reject {
+    background-color: #FF3B30;
+    color: white;
+    border-color: #FF3B30;
+}
+
+.cookie-reject:hover {
+    background-color: #E0321F;
+    border-color: #E0321F;
+}
+
+.cookie-allow {
+    background-color: #34C759;
+    color: white;
+    border-color: #34C759;
+}
+
+.cookie-allow:hover {
+    background-color: #2DAE4E;
+    border-color: #2DAE4E;
+}
+
+.cookie-legitimate {
+    background-color: #FF9500;
+    color: white;
+    border-color: #FF9500;
+}
+
+.cookie-legitimate:hover {
+    background-color: #E68600;
+    border-color: #E68600;
+}
+
+.cookie-settings {
+    background-color: #5856D6;
+    color: white;
+    border-color: #5856D6;
+}
+
+.cookie-settings:hover {
+    background-color: #4644B5;
+    border-color: #4644B5;
+}
 
 .spacer {
     height: 10px;
     width: 100%;
     position: relative;
+}
+
+.text_setting_containers {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text_setting_containers div {
+    margin: 0.7em;
+}
+
+.toggle_button {
+  width: 48px;
+  height: 28px;
+  background-color: #A9A9A9; 
+  border-radius: 27.2px;
+  position: relative;
+  border: none;
+  justify-self: center; 
+  cursor: pointer;
+}
+
+.toggle_button::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 1.6px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle_button.active::before {
+  transform: translateX(22.2px); /* moves the knob to the right */
+}
+
+.toggle_button.active {
+  background-color: #433BFF; /* optional green "on" color */
 }
