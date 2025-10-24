@@ -6,10 +6,7 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "assets/icon16.png",
-      "32": "assets/icon32.png",
-      "48": "assets/icon48.png",
-      "128": "assets/icon128.png"
+      "16": "assets/icon.png"
     }
   },
   "permissions": [
@@ -18,11 +15,20 @@
     "scripting",
     "tabs"
   ],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"cookies_tests/*.mjs"
+			],
+			"matches": ["<all_urls>"]
+		}
+	],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["cookies_tests/test_banner_readability.js", "cookies_tests/test_layering.js", "cookies_tests/test_withdraw_icon.js"],
-      "css": ["popup.css"]
+      "js": ["test_runner.mjs"],
+      "css": ["popup.css"],
+			"run_at": "document_end"
     }
   ],
   "host_permissions": [
