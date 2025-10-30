@@ -133,8 +133,16 @@ const MAX_F = 30;
 const DEADZONE = 1;
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const getPx = () => parseFloat(getComputedStyle(root).fontSize) || 16;
+const applyAndSave = (px) => {
+  const next = clamp(Math.round(px), MIN_F, MAX_F);
+  root.style.fontSize = `${next}px`;
+  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+    chrome.storage.local.set({ popup_size: next });
+  }
+};
 
-
+// --- Apply saved size on load ---
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof chrome !== 'undefined' && chrome.storage?.local) {
     chrome.storage.local.get({ popup_size: null }, ({ popup_size }) => {
@@ -146,6 +154,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// --- Keyboard: Ctrl/Cmd + and Ctrl/Cmd - ---
+document.addEventListener('keydown', (e) => {
+  if (!(e.ctrlKey || e.metaKey)) return;
+
+  // Normalize which key pressed
+  const incKey = e.key === '+' || e.key === '=' || e.code === 'NumpadAdd';
+  const decKey = e.key === '-' || e.key === '_' || e.code === 'NumpadSubtract';
+
+  if (!incKey && !decKey) return;
+
+  e.preventDefault(); // stop browser zoom in the extension UI
+
+  const step = 1; // px per keypress
+  const current = getPx();
+  applyAndSave(current + (incKey ? step : -step));
+});
+
+// --- Drag-to-resize (your existing logic) ---
 let dragging = false;
 let startX = 0, startY = 0, startFontPx = 16;
 let raf = null;
@@ -160,8 +186,7 @@ if (dragEl) {
     dragging = true;
     startX = e.clientX;
     startY = e.clientY;
-
-    startFontPx = parseFloat(getComputedStyle(root).fontSize) || 16;
+    startFontPx = getPx();
 
     document.body.style.userSelect = 'none';
 
@@ -173,7 +198,7 @@ if (dragEl) {
 
       if (Math.hypot(dx, dy) < DEADZONE) return;
 
-  
+      // Allowed shrink (up, up-right) vs grow (down, down-left)
       const projUp       = Math.max(0, -dy);
       const projUpRight  = Math.max(0, (dx - dy) / Math.SQRT2);
       const projDown     = Math.max(0,  dy);
@@ -195,14 +220,11 @@ if (dragEl) {
     const onUp = () => {
       dragging = false;
       document.body.style.userSelect = '';
-
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
 
-      const finalPx = clamp(parseFloat(getComputedStyle(root).fontSize) || startFontPx, MIN_F, MAX_F);
-      if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-        chrome.storage.local.set({ popup_size: Math.round(finalPx) });
-      }
+      // persist final size
+      applyAndSave(getPx());
     };
 
     window.addEventListener('mousemove', onMove);
