@@ -91,7 +91,3 @@ document.getElementById("report_button").addEventListener("click", () => {
         saveSettings(settings);
     });
 });
-
-
-
-
