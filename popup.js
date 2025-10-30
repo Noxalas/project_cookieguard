@@ -122,6 +122,27 @@ document.getElementById("report_button").addEventListener("click", () => {
     });
 });
 
+// open new page for read more page
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.text_underscore').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Build URL (extension-safe if available)
+      const url = (typeof chrome !== 'undefined' && chrome.runtime?.getURL)
+        ? chrome.runtime.getURL('readmore/readmore.html')
+        : './readmore/readmore.html';
+
+      // Open in a new tab
+      if (typeof chrome !== 'undefined' && chrome.tabs?.create) {
+        chrome.tabs.create({ url });        // extension context
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer'); // web page
+      }
+    });
+  });
+});
+
 
 // resize popup script
 const root = document.documentElement;
