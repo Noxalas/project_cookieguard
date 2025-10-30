@@ -36,7 +36,7 @@
 
 .hidden{
     display: none;
-    text-shadow: 5px 5px ;
+    text-shadow: 0.3125rem 0.3125rem ;
 }
 
 .gray {
@@ -69,7 +69,7 @@ header {
 }
 
 header h1 {
-  font-size: 38;
+  font-size: 2.375rem;
   color: #DEDCFF;
   padding-left: 16px;
   position: relative;
@@ -148,7 +148,7 @@ header svg.active {
     
     padding-left: 20px;
     width: 70%;
-    font-size: 18
+    font-size: 1.125rem
 }
 
 .text_container a {
@@ -160,7 +160,7 @@ header svg.active {
 
 h2 {
     margin: 0;
-    font-size: 24;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
@@ -196,7 +196,7 @@ h2 {
 
 .button_download {
     color: #050315;
-    font-size: 16;
+    font-size: 1rem;
     font-weight: 500;
     background: #E5E5E5;
 }
@@ -206,7 +206,7 @@ h2 {
    background: #433BFF;
     color: #FBFBFE;
     width: 50%;
-    font-size: 20;
+    font-size: 1.25rem;
 }
 
 .button_varsle:hover {
@@ -218,7 +218,7 @@ h2 {
     padding: 10px 20px;
     border-radius: 6px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid transparent;
