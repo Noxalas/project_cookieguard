@@ -1,3 +1,33 @@
+//* config settins
+// ? maby use local storage for settings as json files cannot be changed in runtime
+// document.addEventListener('DOMContentLoaded', ()=> {
+//     const url = (typeof chrome !== 'undefined' && chrome.runtime?.getURL)
+//     ? chrome.runtime.getURL('config.json')
+//     : 'config.json';
+
+//   return fetch(url, { cache: 'no-cache' })
+//     .then(r => r.json())
+//     .then(cfg => Number(cfg?.settings?.popup_size) || 16)
+//     .then(size => {
+//     document.documentElement.style.fontSize = `${size}px`})
+// });
+
+// ! no longer used
+// document.addEventListener('DOMContentLoaded', () => {
+//   const root = document.documentElement;
+
+//   if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+//     chrome.storage.local.get({ popup_size: null }, ({ popup_size }) => {
+//       const size = Number.isFinite(popup_size) ? popup_size : 16;
+//       root.style.fontSize = `${size}px`;
+//     });
+//   } else {
+//     // If not running as an extension, just use the default
+//     root.style.fontSize = '16px';
+//   }
+// });
+
+
 // on of func
 document.getElementById("on_off").addEventListener("click", () => {
   
@@ -93,5 +123,92 @@ document.getElementById("report_button").addEventListener("click", () => {
 });
 
 
+// resize popup script
+const root = document.documentElement;
+const dragEl = document.querySelector('.resize_container');
 
+const PX_PER_FONT_PX = 20;
+const MIN_F = 16;
+const MAX_F = 30;
+const DEADZONE = 1;
+
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+    chrome.storage.local.get({ popup_size: null }, ({ popup_size }) => {
+      const size = Number.isFinite(popup_size) ? clamp(popup_size, MIN_F, MAX_F) : 16;
+      root.style.fontSize = `${size}px`;
+    });
+  } else {
+    root.style.fontSize = '16px';
+  }
+});
+
+let dragging = false;
+let startX = 0, startY = 0, startFontPx = 16;
+let raf = null;
+
+if (dragEl) {
+  dragEl.style.cursor = 'ne-resize';
+
+  dragEl.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+
+    dragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    startFontPx = parseFloat(getComputedStyle(root).fontSize) || 16;
+
+    document.body.style.userSelect = 'none';
+
+    const onMove = (ev) => {
+      if (!dragging) return;
+
+      const dx = ev.clientX - startX;
+      const dy = ev.clientY - startY;
+
+      if (Math.hypot(dx, dy) < DEADZONE) return;
+
+  
+      const projUp       = Math.max(0, -dy);
+      const projUpRight  = Math.max(0, (dx - dy) / Math.SQRT2);
+      const projDown     = Math.max(0,  dy);
+      const projDownLeft = Math.max(0, (-dx + dy) / Math.SQRT2);
+
+      const shrinkMag = Math.max(projUp, projUpRight);
+      const growMag   = Math.max(projDown, projDownLeft);
+      const net = growMag - shrinkMag;
+
+      const proposed = startFontPx + (net / PX_PER_FONT_PX);
+      const next = clamp(proposed, MIN_F, MAX_F);
+
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        root.style.fontSize = `${next}px`;
+      });
+    };
+
+    const onUp = () => {
+      dragging = false;
+      document.body.style.userSelect = '';
+
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+
+      const finalPx = clamp(parseFloat(getComputedStyle(root).fontSize) || startFontPx, MIN_F, MAX_F);
+      if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+        chrome.storage.local.set({ popup_size: Math.round(finalPx) });
+      }
+    };
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  });
+} else {
+  console.warn('Resize handle ".resize_container" not found.');
+}
 

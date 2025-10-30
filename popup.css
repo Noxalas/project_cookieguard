@@ -34,9 +34,15 @@
   font-display: swap;
 }
 
+:root{
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+}
+
 .hidden{
     display: none;
-    text-shadow: 0.3125rem 0.3125rem ;
+    /* text-shadow: 0.3125rem 0.3125rem ; */
 }
 
 .gray {
@@ -46,8 +52,7 @@
 
 body {
     margin: 0;
-    width: 420px;
-    /* height: 300px; */
+    
     font-family: Instrument_Sans, sans-serif;
     background: #FBFBFE;
 }
@@ -58,7 +63,8 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;    
-    height: 70px;
+    height: 15%;
+    min-height: 70px;
    
 }
 
@@ -74,16 +80,17 @@ header h1 {
   padding-left: 16px;
   position: relative;
 }
-
+/* ! maby make scalabe but spacer */
 .spacer_1{
     width: 40px;
     height: 100%;
     background: #2F27CE;
 }
 
+/* ! maby make scalabe but button */
 header button {
-  width: 60px;
-  height: 34px;
+  min-width: 60px;
+  min-height: 34px;
   background-color: #433BFF; 
   border-radius: 34px;
   position: relative;
@@ -115,8 +122,10 @@ header button.active {
 }
 
 header svg {
+    /* ! maby make scalabe but button */
     width: 32px;
     height: 32px;
+    aspect-ratio: 1/1;
     padding: 10px;
     transition: transform 0.6s ease, fill 0.3s ease;
     fill: white; 
@@ -131,8 +140,8 @@ header svg.active {
 
 
 .transition {
-   
-    height: 7px;
+    height: 3%;
+    min-height: 7px;
     width: 100%;
     background: linear-gradient(#2F27CE, #FBFBFE);
     
@@ -144,6 +153,7 @@ header svg.active {
     /* background: red; */
 }
 
+/* ! padding scalbe? */
 .text_container {
     
     padding-left: 20px;
@@ -164,6 +174,7 @@ h2 {
     font-weight: 500;
 }
 
+/* ! padding scalbe? */
 .score_container {
     text-align: center;
     padding-top: 10px;
@@ -182,6 +193,7 @@ h2 {
     border: none;
 }
 
+/* ! margin scalbe? */
 .buttons_container button p{
     display: flex;
     justify-content: space-around;
@@ -213,7 +225,7 @@ h2 {
     background: #E0321F;
 }
 
-/* Cookie consent button styles */
+/* ! not used? Cookie consent button styles */
 .cookie-button {
     padding: 10px 20px;
     border-radius: 6px;
@@ -224,52 +236,57 @@ h2 {
     border: 2px solid transparent;
 }
 
+/* ! not used? */
 .cookie-reject {
     background-color: #FF3B30;
     color: white;
     border-color: #FF3B30;
 }
 
+/* ! not used */
 .cookie-reject:hover {
     background-color: #E0321F;
     border-color: #E0321F;
-}
+}/* ! padding scalbe? */
 
+/* ! not used */
 .cookie-allow {
     background-color: #34C759;
     color: white;
     border-color: #34C759;
 }
-
+/* ! not used */
 .cookie-allow:hover {
     background-color: #2DAE4E;
     border-color: #2DAE4E;
 }
-
+/* ! not used */
 .cookie-legitimate {
     background-color: #FF9500;
     color: white;
     border-color: #FF9500;
 }
-
+/* ! not used */
 .cookie-legitimate:hover {
     background-color: #E68600;
     border-color: #E68600;
 }
-
+/* ! not used */
 .cookie-settings {
     background-color: #5856D6;
     color: white;
     border-color: #5856D6;
 }
-
+/* ! not used */
 .cookie-settings:hover {
     background-color: #4644B5;
     border-color: #4644B5;
 }
 
+
 .spacer {
-    height: 10px;
+    
+    height: 1%;
     width: 100%;
     position: relative;
 }
@@ -313,4 +330,10 @@ h2 {
 
 .toggle_button.active {
   background-color: #433BFF; /* optional green "on" color */
+}
+
+.resize_container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
