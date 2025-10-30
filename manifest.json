@@ -13,24 +13,38 @@
     "storage",
     "activeTab",
     "scripting",
-    "tabs"
+    "tabs",
+    "offscreen"
   ],
-	"web_accessible_resources": [
-		{
-			"resources": [
-				"cookies_tests/*.mjs"
-			],
-			"matches": ["<all_urls>"]
-		}
-	],
-  "content_scripts": [
+  "web_accessible_resources": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["test_runner.mjs"],
-      "css": ["popup.css"],
-			"run_at": "document_end"
+      "resources": [
+        "cookies_tests/*.mjs",
+        "offscreen.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ],
+  "content_scripts": [
+    {
+      "css": [
+        "popup.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "host_permissions": [
     "<all_urls>"
   ]
