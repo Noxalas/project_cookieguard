@@ -40,7 +40,7 @@
 }
 
 .gray {
-    background: #B9B9B9   !important;
+    background: #B9B9B9  !important;
     
 }
 
@@ -195,27 +195,18 @@ h2 {
 }
 
 .button_download {
-    color: white;
+    color: #050315;
     font-size: 16;
     font-weight: 500;
-    background: #34C759;  /* Changed to a clear green color */
-    transition: background-color 0.3s ease;
-    border: none;
-    padding: 10px 20px;
+    background: #E5E5E5;
 }
 
-.button_download:hover {
-    background: #2DAE4E;
-}
 
 .button_varsle {
-    background: #FF3B30;  /* Changed to high-contrast red */
-    color: white;
+   background: #433BFF;
+    color: #FBFBFE;
     width: 50%;
     font-size: 20;
-    transition: background-color 0.3s ease;
-    border: none;
-    padding: 10px 20px;
 }
 
 .button_varsle:hover {
