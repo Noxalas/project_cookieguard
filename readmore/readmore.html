@@ -6,144 +6,133 @@
         <title>Cookie Guard</title>
         <link rel="stylesheet" href="./readmore.css"></link>
     </head>
-<body>
+<body class="light">
+
+<div class="wrapper">
     <header>
-        <div class="logo_container">
-            <img alt="A logo with two P's next to eachother" src="../assets/icon.png"></img>
-        </div>
-
-        <div class="header_text_container">
-            <h1 class="underline">CookieGuard</h1>
-            <h1>Report</h1>
-        </div>
+        <img alt="A logo with CG next to eachother" src="../assets/icon.png"></img>
+        <h1><u>CookieGuard</u> <br>Report</h1>
+        <button id="toggle-color-mode-btn">Dark</button>
     </header>
+    
 <main> 
-    <div class="spacer_header_section1"></div>
+    <section>
+        <div class="card">
 
-    <section class="site_information_container">
-        <div>
-        <div class="text_container">
-
-            <div class="website_container">
-                <div class="logo_container">
-                    <img id="site_logo" alt="Site logo form the evaluated site" src="../assets/example_site_logo.png">
+            <div class="hbox">
+                <img id="site_logo" alt="Site logo form the evaluated site" src="../assets/example_site_logo.png">
+                <div class="vbox">
+                    <p><a href="https://www.vg.no/" target="_blank">https://www.vg.no/</a></p>
+                    <p>Report Generated: <span id="site_date">01/10/2025</span></p>
                 </div>
             </div>
-            
           
-            <div class="website_text_container">
-                <h2 id="site_url" class="underline"><a href="">https://www.vg.no/</a></h2>
-                <p class="italic">Report Generated: <span id="site_date">01/10/2025</span></p>
-            </div>
-        </div>
-            
-            <div class="report_and_score_container">
 
-                <div class="text_for_report_and_score_container">
-                    <p class="bold ">CookieGuard found several violations on this site </p>
-                    <p>To take action please send a report to Datatilsynet by pressing the send report button.</p>
-                    <p>Below you can see the violations we found.</p>
-                </div>
+                <h1>Found several violations on this site</h1>
+                <p>To take action please send a report to Datatilsynet by pressing the send report button.</p>
+                <p>Below you can see the violations we found.</p>
                 
                 <div class="score_container">
                 <div>
                     <!-- stroke-dashoffset="565px" betyr at progress er 0 mens 0px er 100% -->
                 <svg width="9rem" height="9rem" viewBox="-21.5 -21.5 215 215" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
                     <circle r="76" cx="86" cy="86" fill="transparent" stroke="#e0e0e0" stroke-width="30"></circle>
-                    <circle r="76" cx="86" cy="86" stroke="#FF3B30" stroke-width="30" stroke-linecap="round" stroke-dashoffset="368px" fill="transparent" stroke-dasharray="477.28000000000003px"></circle>
+                    <circle r="76" cx="86" cy="86" stroke="#FF3B30" stroke-width="20" stroke-linecap="round" stroke-dashoffset="0px" fill="transparent" stroke-dasharray="477px"></circle>
                     <text x="60px" y="102px" fill="#000000" font-size="48px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -168px)">23</text>
                 </svg>
                 </div>
                 
                 </div>
 
+
+            <button id="button_download_file">
+                <strong>Download PDF</strong>
+            </button>
+
+            <button id="button_notify" class="primary">
+                <strong>Varsle Datatilsynet</strong>
+            </button>
+            
+            <div class="maschot_container">
+                <img alt="A Cookie posing as a guard" src="../assets/cookieGuard.png">
             </div>
-
-                <div class="buttons_container">
-                    <button class="button_download">
-                        <p>Download PDF</p>
-                    </button>
-
-                    <button class="button_varsle">
-                        <p>Varsle Datatilsynet</p>
-                    </button>
+            
+        </section>
+        
+        <hr>
+        
+        <section id="card-section" class="flexbox gap-8">
+            <div class="card success">
+                <div>
+                    <div class="label_header">
+                        <h2>Third‑party tracking script</h3>
+                        <p class="label small success_bg">Critical</p>
+                    </div>
+                    <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
+                    <p>Consent required — cookies set prior to opt‑in.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="maschot_container">
-            <img alt="A Cookie posing as a guard" src="../assets/cookieGuard.png">
-        </div>
-
-    </section>
-
-    <div class="spacer_line">
-        <div></div>
-    </div>
-
-    <section class="reportcard_containers">
-                <div class="report_card_example green">
-            <div>
-                <div class="reportcard_header_container">
-                    <h3 id="reportcard_header">Third‑party tracking script </h3>
-                    <div id="reportcard_warning_label" class="reportcard_warning_label green"><p>Critical</p></div>
+            <div class="card danger">
+                <div>
+                    <div class="label_header">
+                        <h2>Third‑party tracking script</h3>
+                        <p class="label small danger_bg">Critical</p>
+                    </div>
+                    <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
+                    <p>Consent required — cookies set prior to opt‑in.</p>
                 </div>
-                <p id="reportcard_text" class="reportcard_text">A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
-                <p id="reportcard_solution" class="reportcard_solution">Consent required — cookies set prior to opt‑in.</p>
             </div>
-        </div>
-
-        <div class="report_card_example green">
-            <div>
-                <div class="reportcard_header_container">
-                    <h3 id="reportcard_header">Third‑party tracking script </h3>
-                    <div id="reportcard_warning_label" class="reportcard_warning_label green"><p>Critical</p></div>
+            <div class="card warning">
+                <div>
+                    <div class="label_header">
+                        <h2>Third‑party tracking script</h3>
+                        <p class="label small warning_bg">Critical</p>
+                    </div>
+                    <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
+                    <p>Consent required — cookies set prior to opt‑in.</p>
                 </div>
-                <p id="reportcard_text" class="reportcard_text">A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
-                <p id="reportcard_solution" class="reportcard_solution">Consent required — cookies set prior to opt‑in.</p>
             </div>
-        </div>
-
-        <div class="report_card_example yellow">
-            <div>
-                <div class="reportcard_header_container">
-                    <h3 id="reportcard_header">Third‑party tracking script </h3>
-                    <div id="reportcard_warning_label" class="reportcard_warning_label yellow"><p>Critical</p></div>
+            <div class="card success">
+                <div>
+                    <div class="label_header">
+                        <h2>Third‑party tracking script</h3>
+                        <p class="label small success_bg">Critical</p>
+                    </div>
+                    <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
+                    <p>Consent required — cookies set prior to opt‑in.</p>
                 </div>
-                <p id="reportcard_text" class="reportcard_text">A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
-                <p id="reportcard_solution" class="reportcard_solution">Consent required — cookies set prior to opt‑in.</p>
             </div>
-        </div>
-
-        <div class="report_card_example red">
-            <div>
-                <div class="reportcard_header_container">
-                    <h3 id="reportcard_header">Third‑party tracking script </h3>
-                    <div id="reportcard_warning_label" class="reportcard_warning_label red"><p>Critical</p></div>
-                </div>
-                <p id="reportcard_text" class="reportcard_text">A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
-                <p id="reportcard_solution" class="reportcard_solution">Consent required — cookies set prior to opt‑in.</p>
-            </div>
-        </div>
-
-        <div class="report_card_example red">
-            <div>
-                <div class="reportcard_header_container">
-                    <h3 id="reportcard_header">Third‑party tracking script </h3>
-                    <div id="reportcard_warning_label" class="reportcard_warning_label red"><p>Critical</p></div>
-                </div>
-                <p id="reportcard_text" class="reportcard_text">A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
-                <p id="reportcard_solution" class="reportcard_solution">Consent required — cookies set prior to opt‑in.</p>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<div class="spacer_end"></div>
-
+        </section>
+    </main>
+    
+    <footer>
+        <p>Test</p>
+    </footer>
+    
+</div>
 </body>
 
+<script>
+    const toggleModeBtn = document.getElementById('toggle-color-mode-btn');
 
+    toggleModeBtn.onclick = () => {
+        document.body.classList.toggle('light');
+    }
+
+    function getInfoCard(cardClasses, cardTitle, info) {
+        return `<div class=${cardClasses}>
+                <div>
+                    <div class="label_header">
+                        <h2>${cardTitle}</h3>
+                        <p class="label small success_bg">Critical</p>
+                    </div>
+                    <p>${info}</p>
+                    <p>Consent required — cookies set prior to opt‑in.</p>
+                </div>
+            </div>`
+    }
+
+    
+</script>
 
 </html>
