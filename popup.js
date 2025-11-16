@@ -50,6 +50,14 @@ document.getElementById("settings_icon").addEventListener("click", () => {
     document.getElementById("section3").classList.toggle("hidden");
 
 });
+// settigns open site for keyboard
+document.getElementById('settings_icon').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      document.querySelector("main").classList.toggle("hidden");
+      document.querySelector("header svg").classList.toggle("active");
+      document.getElementById("section3").classList.toggle("hidden");
+    }
+});
 
 // Settings functionality
 function saveSettings(settings) {
@@ -123,6 +131,27 @@ document.getElementById("report_button").addEventListener("click", () => {
 });
 
 // open new page for read more page
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.text_underscore').forEach((el) => {
+    el.addEventListener('keypress', (e) => {
+       if (e.key === 'Enter') {
+
+      // Build URL (extension-safe if available)
+      const url = (typeof chrome !== 'undefined' && chrome.runtime?.getURL)
+        ? chrome.runtime.getURL('readmore/readmore.html')
+        : './readmore/readmore.html';
+
+      // Open in a new tab
+      if (typeof chrome !== 'undefined' && chrome.tabs?.create) {
+        chrome.tabs.create({ url });        // extension context
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer'); // web page
+      }}
+    });
+  });
+});
+
+// Open new page for read more with keyboard
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.text_underscore').forEach((el) => {
     el.addEventListener('click', (e) => {

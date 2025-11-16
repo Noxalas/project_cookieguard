@@ -8,8 +8,8 @@
     </head>
 
     <body>
-      <header class="header">
-        <div>
+      <header class="header"  >
+        <div tabindex="0">
           <h1>CookieGuard</h1>
         </div>
 
@@ -23,7 +23,7 @@
           ></button>
         </div>
 
-        <div id="settings_icon">
+        <div id="settings_icon" tabindex="0" type="button" aria-label="Open settings" aria-pressed="false">
           <svg
             id="settings_svg"
             width="20"
@@ -43,14 +43,14 @@
 
       <main>
         <section class="text_score_container">
-          <div class="text_container">
+          <div class="text_container" tabindex="0">
             <p>
               <strong class="text_bold">CookieGuard:</strong> Several major cookie
               breaches found
             </p>
             <p>
               Deceptive UI, Layered reject button, Long life time
-              <a class="text_underscore">Read More</a>
+              <a class="text_underscore" tabindex="0" aria-label="Open Advanced Information">Read More</a>
             </p>
           </div>
 
