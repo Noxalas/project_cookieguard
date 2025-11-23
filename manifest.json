@@ -14,7 +14,8 @@
     "activeTab",
     "scripting",
     "tabs",
-    "offscreen"
+    "offscreen",
+    "scripting"
   ],
   "web_accessible_resources": [
     {
@@ -29,9 +30,6 @@
   ],
   "content_scripts": [
     {
-      "css": [
-        "popup.css"
-      ],
       "matches": [
         "<all_urls>"
       ],
@@ -43,7 +41,8 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "host_permissions": [
     "<all_urls>"

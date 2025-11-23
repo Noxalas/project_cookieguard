@@ -1,6 +1,8 @@
 // Test for legitimate interest cookies
-export function runCheck() {
-  const legitimateInterestKeywords = [
+export async function runCheck(doc) {
+  const CHECK_NAME = "legitimate_interest";
+
+  const LEGITIMATE_INTEREST_KEYWORDS = [
     "legitimate interest",
     "legitime interesser",
     "berettiget interesse",
@@ -8,78 +10,105 @@ export function runCheck() {
     "business purposes",
   ];
 
-  const legitimateInterestRules = {
-    // Check if legitimate interest is clearly explained
-    hasExplanation: () => {
-      const consentText = document.body.innerText.toLowerCase();
-      return legitimateInterestKeywords.some((keyword) =>
-        consentText.includes(keyword)
-      );
-    },
+  const PURPOSE_KEYWORDS = [
+    "analytics",
+    "marketing",
+    "advertising",
+    "personalization",
+    "security",
+    "fraud prevention",
+  ];
 
-    // Check if there's a way to object to legitimate interest processing
-    hasObjectionOption: () => {
-      const links = Array.from(document.getElementsByTagName("a"));
-      const buttons = Array.from(document.getElementsByTagName("button"));
-      const elements = [...links, ...buttons];
+  const OBJECTION_KEYWORDS = [
+    "object",
+    "opt out",
+    "reject",
+    "decline",
+    "withdraw",
+    "revoke"
+  ];
 
-      return elements.some((element) => {
-        const text = element.innerText.toLowerCase();
-        return (
-          text.includes("object") ||
-          text.includes("opt out") ||
-          text.includes("reject") ||
-          text.includes("decline")
-        );
-      });
-    },
+  const docText = (doc.body?.innerText || "").toLowerCase();
 
-    // Check if legitimate interest purposes are specific and clear
-    hasClearPurposes: () => {
-      const consentText = document.body.innerText.toLowerCase();
-      const purposeKeywords = [
-        "analytics",
-        "marketing",
-        "advertising",
-        "personalization",
-        "security",
-        "fraud prevention",
-      ];
+  const hasExplanation = LEGITIMATE_INTEREST_KEYWORDS.some((kw) => docText.includes(kw));
+  const hasClearPurposes = PURPOSE_KEYWORDS.some((kw) =>
+    docText.includes(kw)
+  );
 
-      return purposeKeywords.some((purpose) => consentText.includes(purpose));
-    },
+  const isVisible = (el) => {
+    const cs = el.ownerDocument.defaultView.getComputedStyle(el);
+    return (
+      cs.display !== "none" &&
+      cs.visibility !== "hidden" &&
+      cs.opacity !== "0" &&
+      el.offsetWidth > 0 &&
+      el.offsetHeight > 0
+    );
   };
 
-  const results = {
-    explanation: legitimateInterestRules.hasExplanation(),
-    objection: legitimateInterestRules.hasObjectionOption(),
-    purposes: legitimateInterestRules.hasClearPurposes(),
+  const getDomPath = (el) => {
+    try {
+      const path = [];
+      while (el && el.nodeType === Node.ELEMENT_NODE) {
+        let selector = el.nodeName.toLowerCase();
+        if (el.id) {
+          selector += `#${el.id}`;
+          path.unshift(selector);
+          break;
+        }
+        if (el.classList.length > 0) {
+          selector += "." + [...el.classList].join(".");
+        }
+        path.unshift(selector);
+        el = el.parentElement;
+      }
+      return path.join(" > ");
+    } catch {
+      return null;
+    }
   };
 
-  const score =
-    (Object.values(results).filter(Boolean).length /
-      Object.keys(results).length) *
-    100;
+  const actionableElements = doc.querySelectorAll(
+    "button, a, input[type='button'], input[type='submit']"
+  );
 
-  return {
+  let objectionElement = null;
+
+  for (const el of actionableElements) {
+    const text = (el.innerText || "").toLowerCase().trim();
+    if (!isVisible(el)) continue;
+
+    if (OBJECTION_KEYWORDS.some((kw) => text.includes(kw))) {
+      objectionElement = el;
+      break;
+    }
+  }
+
+  const hasObjection = Boolean(objectionElement);
+
+  const checks = [hasExplanation, hasObjection, hasClearPurposes];
+  const score = (checks.filter(Boolean).length / checks.length) * 100;
+
+  const result = {
+    check: CHECK_NAME,
+    passed: score >= 66,
+    message:
+      score >= 66
+        ? "Legitimate interest information appears adequately presented."
+        : "Legitimate interest information appears incomplete.",
     score,
     details: {
-      hasExplanation: results.explanation
-        ? "Legitimate interest is explained"
-        : "No clear explanation of legitimate interest",
-      hasObjectionOption: results.objection
-        ? "Option to object is provided"
-        : "No clear way to object to processing",
-      hasClearPurposes: results.purposes
-        ? "Purposes are clearly stated"
-        : "Purposes are not clearly specified",
-    },
+      hasExplanation,
+      hasClearPurposes,
+      hasObjectionOption: hasObjection,
+      objectionElementText: hasObjection
+        ? objectionElement.innerText.trim()
+        : null,
+      objectionElementSelector: hasObjection
+        ? getDomPath(objectionElement)
+        : null
+    }
   };
-}
 
-// Execute the test when the content script loads
-// const legitimateInterestResult = testLegitimateInterest();
-// chrome.runtime.sendMessage({
-//   type: "legitimateInterestTest",
-//   result: legitimateInterestResult,
-// });
+  return result;
+}
