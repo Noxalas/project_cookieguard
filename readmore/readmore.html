@@ -27,7 +27,6 @@
                 </div>
             </div>
           
-
                 <h1>Found several violations on this site</h1>
                 <p>To take action please send a report to Datatilsynet by pressing the send report button.</p>
                 <p>Below you can see the violations we found.</p>
@@ -106,7 +105,6 @@
     </main>
     
     <footer>
-        <p>Test</p>
     </footer>
     
 </div>
@@ -119,8 +117,9 @@
         document.body.classList.toggle('light');
     }
 
-    function createInfoCard(cardClasses, cardTitle, info, labelText) {
+    function createInfoCard(cardClasses, cardTitle, info, labelText, tabIndex) {
         const card = document.createElement('div');
+        card.tabIndex = tabIndex;
         card.className = `card ${cardClasses}`;
 
         const inner = document.createElement('div');
