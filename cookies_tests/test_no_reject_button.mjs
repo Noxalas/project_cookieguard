@@ -82,6 +82,7 @@ export async function runCheck(doc) {
 	const result = {
 		check: CHECK_NAME,
 		passed: Boolean(match),
+		severity: [5, 4],
 		message: match
 			? "Reject button detected."
 			: "No reject button detected.",

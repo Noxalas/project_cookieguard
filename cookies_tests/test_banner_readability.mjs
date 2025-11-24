@@ -233,15 +233,10 @@ export async function runCheck(doc) {
   return {
     check: CHECK_NAME,
     passed,
+    severity: [4, 3],
     message: passed
       ? "Banner readability meets WCAG-like thresholds."
       : "Banner readability violations detected.",
-    details: {
-      bannerSelector: getDomPath(banner),
-      sizeOK,
-      textElements: texts.length,
-      failures
-    }
   };
 }
 

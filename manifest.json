@@ -20,6 +20,7 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "libs/jspdf.umd.min.js",
         "cookies_tests/*.mjs",
         "offscreen.html"
       ],

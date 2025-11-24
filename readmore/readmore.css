@@ -380,6 +380,7 @@ header {
 }
 
 .label {
+  color: black;
   border-radius: 1rem;
   max-height: fit-content;
   text-align: center;

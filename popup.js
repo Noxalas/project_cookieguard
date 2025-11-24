@@ -27,6 +27,43 @@
 //   }
 // });
 
+function computeSiteScore(results) {
+  if (!results.length) return 0;
+
+  const total = results.length;
+  const violations = results.filter(r => !r.passed).length;
+
+  return Math.round((violations / total) * 100);
+}
+
+function updateScoreCircle(score) {
+  const circle = document.querySelector('.score_container circle:nth-of-type(2)');
+  const text = document.querySelector('.score_container text');
+
+  const max = 477;
+  const offset = max - (score / 100) * max;
+
+  circle.style.strokeDashoffset = `${offset}px`;
+  text.textContent = score;
+
+  if (score >= 67) {
+    circle.style.stroke = "#e74c3c"; // red
+    text.style.fill = "#e74c3c";
+  } else if (score >= 34) {
+    circle.style.stroke = "#f1c40f"; // yellow
+    text.style.fill = "#f1c40f";
+  } else {
+    circle.style.stroke = "#27ae60"; // green
+    text.style.fill = "#27ae60";
+  }
+}
+
+chrome.storage.local.get(["latestResults"], ({ latestResults }) => {
+  if (latestResults) {
+    const score = computeSiteScore(latestResults);
+    updateScoreCircle(score);
+  }
+});
 
 // on of func
 document.getElementById("on_off").addEventListener("click", () => {
