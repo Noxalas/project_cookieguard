@@ -110,7 +110,7 @@ hr {
   width: 95%;
   margin: 0 auto 16px auto;
 
-  background-color: var(--text-muted);
+  background-color: hsl(0, 0%, 70%);
 }
 
 section {
@@ -376,7 +376,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: top;
+  align-items: baseline;
 }
 
 .label {
@@ -384,6 +384,7 @@ header {
   max-height: fit-content;
   text-align: center;
   padding: 4px 8px 4px 8px;
+  margin-left: 1rem;
 }
 
 .danger_bg {

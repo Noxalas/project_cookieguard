@@ -66,7 +66,7 @@
                 <div>
                     <div class="label_header">
                         <h2>Third‑party tracking script</h3>
-                        <p class="label small success_bg">Critical</p>
+                        <p class="label success_bg">Critical</p>
                     </div>
                     <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
                     <p>Consent required — cookies set prior to opt‑in.</p>
@@ -76,7 +76,7 @@
                 <div>
                     <div class="label_header">
                         <h2>Third‑party tracking script</h3>
-                        <p class="label small danger_bg">Critical</p>
+                        <p class="label danger_bg">Critical</p>
                     </div>
                     <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
                     <p>Consent required — cookies set prior to opt‑in.</p>
@@ -86,7 +86,7 @@
                 <div>
                     <div class="label_header">
                         <h2>Third‑party tracking script</h3>
-                        <p class="label small warning_bg">Critical</p>
+                        <p class="label warning_bg">Critical</p>
                     </div>
                     <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
                     <p>Consent required — cookies set prior to opt‑in.</p>
@@ -96,7 +96,7 @@
                 <div>
                     <div class="label_header">
                         <h2>Third‑party tracking script</h3>
-                        <p class="label small success_bg">Critical</p>
+                        <p class="label success_bg">Critical</p>
                     </div>
                     <p>A third‑party analytics tracker is set before consent is given. This collects persistent identifiers across pages.</p>
                     <p>Consent required — cookies set prior to opt‑in.</p>
@@ -119,19 +119,38 @@
         document.body.classList.toggle('light');
     }
 
-    function getInfoCard(cardClasses, cardTitle, info) {
-        return `<div class=${cardClasses}>
-                <div>
-                    <div class="label_header">
-                        <h2>${cardTitle}</h3>
-                        <p class="label small success_bg">Critical</p>
-                    </div>
-                    <p>${info}</p>
-                    <p>Consent required — cookies set prior to opt‑in.</p>
-                </div>
-            </div>`
+    function createInfoCard(cardClasses, cardTitle, info, labelText) {
+        const card = document.createElement('div');
+        card.className = `card ${cardClasses}`;
+
+        const inner = document.createElement('div');
+
+        const labelHeader = document.createElement('div');
+        labelHeader.className = 'label_header';
+
+        const h2 = document.createElement('h2');
+        h2.textContent = cardTitle;
+
+        const label = document.createElement('p');
+        label.className = 'label success_bg';
+        label.textContent = labelText;
+
+        labelHeader.append(h2, label);
+
+        const infoP = document.createElement('p');
+        infoP.textContent = info;
+
+        const consentP = document.createElement('p');
+        consentP.textContent = 'Consent required — cookies set prior to opt-in.';
+
+        inner.append(labelHeader, infoP, consentP);
+        card.append(inner);
+
+        return card;
     }
 
+    const cardSection = document.getElementById('card-section');
+    cardSection.append(createInfoCard('success', 'Test', 'info', 'Safe'));
     
 </script>
 
