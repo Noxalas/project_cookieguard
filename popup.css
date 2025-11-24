@@ -153,6 +153,15 @@ header svg.active {
     /* background: red; */
 }
 
+.exit_settings{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.exit_settings:hover{
+    cursor: pointer;
+}
+
+
 /* ! padding scalbe? */
 .text_container {
     

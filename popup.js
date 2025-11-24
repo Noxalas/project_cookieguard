@@ -87,6 +87,22 @@ document.getElementById("settings_icon").addEventListener("click", () => {
   document.getElementById("section3").classList.toggle("hidden");
 
 });
+// settings back menu
+document.getElementById("exit_settings").addEventListener("click", () => {
+  document.querySelector("main").classList.toggle("hidden");
+  document.querySelector("header svg").classList.toggle("active");
+  document.getElementById("section3").classList.toggle("hidden");
+
+});
+
+document.getElementById('exit_settings').addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    document.querySelector("main").classList.toggle("hidden");
+    document.querySelector("header svg").classList.toggle("active");
+    document.getElementById("section3").classList.toggle("hidden");
+  }
+});
+
 // settigns open site for keyboard
 document.getElementById('settings_icon').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {

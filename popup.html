@@ -2,160 +2,123 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Cookie Guard</title>
-  <link rel="stylesheet" href="./popup.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cookie Guard</title>
+    <link rel="stylesheet" href="./readmore.css">
+    <script src="../libs/jspdf.umd.min.js"></script>
+
 </head>
 
-<body>
-  <header class="header">
-    <div tabindex="0">
-      <h1>CookieGuard</h1>
+<body class="light">
+
+    <div class="wrapper">
+        <header>
+            <img alt="A logo with CG next to eachother" src="../assets/icon.png"></img>
+            <h1><u>CookieGuard</u> <br>Report</h1>
+            <button id="toggle-color-mode-btn">Dark</button>
+        </header>
+
+        <main>
+            <section>
+                <div class="card">
+
+                    <div class="hbox">
+                        <img id="site_logo" alt="Site logo form the evaluated site"
+                            src="../assets/example_site_logo.png">
+                        <div class="vbox">
+                            <p><a href="https://www.vg.no/" target="_blank">https://www.vg.no/</a></p>
+                            <p>Report Generated: <span id="site_date">01/10/2025</span></p>
+                        </div>
+                    </div>
+
+                    <h1>Found several violations on this site</h1>
+                    <p>To take action please send a report to Datatilsynet by pressing the send report button.</p>
+                    <p>Below you can see the violations we found.</p>
+
+                    <div class="score_container">
+                        <div>
+                            <!-- stroke-dashoffset="565px" betyr at progress er 0 mens 0px er 100% -->
+                            <svg width="9rem" height="9rem" viewBox="-21.5 -21.5 215 215" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
+                                <circle r="76" cx="86" cy="86" fill="transparent" stroke="#e0e0e0" stroke-width="30">
+                                </circle>
+                                <circle r="76" cx="86" cy="86" stroke="#FF3B30" stroke-width="20" stroke-linecap="round"
+                                    stroke-dashoffset="0px" fill="transparent" stroke-dasharray="477px"></circle>
+                                <text x="60px" y="102px" fill="#000000" font-size="48px" font-weight="bold"
+                                    style="transform:rotate(90deg) translate(0px, -168px)">23</text>
+                            </svg>
+                        </div>
+
+                    </div>
+
+
+                    <button id="download-pdf-btn">
+                        <strong>Download PDF</strong>
+                    </button>
+
+                    <button id="button_notify" class="primary">
+                        <strong>Varsle Datatilsynet</strong>
+                    </button>
+
+            </section>
+
+            <hr>
+
+            <section id="card-section" class="flexbox gap-8">
+                <div class="card success">
+                    <div>
+                        <div class="label_header">
+                            <h2>Third‑party tracking script</h3>
+                                <p class="label success_bg">Critical</p>
+                        </div>
+                        <p>A third‑party analytics tracker is set before consent is given. This collects persistent
+                            identifiers across pages.</p>
+                        <p>Consent required — cookies set prior to opt‑in.</p>
+                    </div>
+                </div>
+                <div class="card danger">
+                    <div>
+                        <div class="label_header">
+                            <h2>Third‑party tracking script</h3>
+                                <p class="label danger_bg">Critical</p>
+                        </div>
+                        <p>A third‑party analytics tracker is set before consent is given. This collects persistent
+                            identifiers across pages.</p>
+                        <p>Consent required — cookies set prior to opt‑in.</p>
+                    </div>
+                </div>
+                <div class="card warning">
+                    <div>
+                        <div class="label_header">
+                            <h2>Third‑party tracking script</h3>
+                                <p class="label warning_bg">Critical</p>
+                        </div>
+                        <p>A third‑party analytics tracker is set before consent is given. This collects persistent
+                            identifiers across pages.</p>
+                        <p>Consent required — cookies set prior to opt‑in.</p>
+                    </div>
+                </div>
+                <div class="card success">
+                    <div>
+                        <div class="label_header">
+                            <h2>Third‑party tracking script</h3>
+                                <p class="label success_bg">Critical</p>
+                        </div>
+                        <p>A third‑party analytics tracker is set before consent is given. This collects persistent
+                            identifiers across pages.</p>
+                        <p>Consent required — cookies set prior to opt‑in.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+        </footer>
+
     </div>
 
-    <div class="spacer_1"></div>
-
-    <div id="on_off">
-      <button type="button" aria-pressed="false" aria-label="Turn CookieGuard on or off"></button>
-    </div>
-
-    <div id="settings_icon" tabindex="0" type="button" aria-label="Open settings" aria-pressed="false">
-      <svg id="settings_svg" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M10.0001 14C9.07183 14 8.18159 13.6313 7.52521 12.9749C6.86883 12.3185 6.50008 11.4283 6.50008 10.5C6.50008 9.57174 6.86883 8.6815 7.52521 8.02513C8.18159 7.36875 9.07183 7 10.0001 7C10.9283 7 11.8186 7.36875 12.475 8.02513C13.1313 8.6815 13.5001 9.57174 13.5001 10.5C13.5001 11.4283 13.1313 12.3185 12.475 12.9749C11.8186 13.6313 10.9283 14 10.0001 14ZM17.4301 11.47C17.4701 11.15 17.5001 10.83 17.5001 10.5C17.5001 10.17 17.4701 9.84 17.4301 9.5L19.5401 7.87C19.7301 7.72 19.7801 7.45 19.6601 7.23L17.6601 3.77C17.5401 3.55 17.2701 3.46 17.0501 3.55L14.5601 4.55C14.0401 4.16 13.5001 3.82 12.8701 3.57L12.5001 0.92C12.4601 0.68 12.2501 0.5 12.0001 0.5H8.00008C7.75008 0.5 7.54008 0.68 7.50008 0.92L7.13008 3.57C6.50008 3.82 5.96008 4.16 5.44008 4.55L2.95008 3.55C2.73008 3.46 2.46008 3.55 2.34008 3.77L0.340084 7.23C0.210084 7.45 0.270084 7.72 0.460084 7.87L2.57008 9.5C2.53008 9.84 2.50008 10.17 2.50008 10.5C2.50008 10.83 2.53008 11.15 2.57008 11.47L0.460084 13.13C0.270084 13.28 0.210084 13.55 0.340084 13.77L2.34008 17.23C2.46008 17.45 2.73008 17.53 2.95008 17.45L5.44008 16.44C5.96008 16.84 6.50008 17.18 7.13008 17.43L7.50008 20.08C7.54008 20.32 7.75008 20.5 8.00008 20.5H12.0001C12.2501 20.5 12.4601 20.32 12.5001 20.08L12.8701 17.43C13.5001 17.17 14.0401 16.84 14.5601 16.44L17.0501 17.45C17.2701 17.53 17.5401 17.45 17.6601 17.23L19.6601 13.77C19.7801 13.55 19.7301 13.28 19.5401 13.13L17.4301 11.47Z" />
-      </svg>
-    </div>
-  </header>
-
-  <div class="transition"></div>
-
-  <main>
-    <section class="text_score_container">
-      <div class="text_container" tabindex="0">
-        <p>
-          <strong class="text_bold">CookieGuard:</strong> Several major cookie
-          breaches found
-        </p>
-        <p>
-          <a class="text_underscore" tabindex="0" aria-label="Open Advanced Information">Read More</a>
-        </p>
-      </div>
-
-      <div class="score_container">
-        <svg width="7.5rem" height="7.5rem" viewBox="-21.5 -21.5 215 215" version="1.1"
-          xmlns="http://www.w3.org/2000/svg" style="transform: rotate(-90deg)">
-          <circle r="76" cx="86" cy="86" fill="transparent" stroke="#e0e0e0" stroke-width="30"></circle>
-          <circle r="76" cx="86" cy="86" stroke="#FF3B30" stroke-width="30" stroke-linecap="round"
-            stroke-dashoffset="368px" fill="transparent" stroke-dasharray="477.28000000000003px"></circle>
-          <text x="60px" y="102px" fill="#000000" font-size="48px" font-weight="bold"
-            style="transform: rotate(90deg) translate(0px, -168px)">
-            23
-          </text>
-        </svg>
-      </div>
-    </section>
-
-    <div class="spacer"></div>
-
-    <div class="buttons_container">
-      <div class="spacer_2"></div>
-
-      <button class="button_download">
-        <p>Download PDF</p>
-      </button>
-
-      <button class="button_varsle">
-        <p>Varsle Datatilsynet</p>
-      </button>
-    </div>
-  </main>
-
-  <section id="section2" class="hidden">
-    <section class="text_score_container">
-      <div class="text_container">
-        <p>
-          <strong class="text_bold">CookieGuard:</strong> Currently disabled
-        </p>
-      </div>
-
-      <div class="score_container">
-        <div>
-          <svg width="120" height="120" viewBox="-21.5 -21.5 215 215" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            style="transform: rotate(-90deg)">
-            <circle r="76" cx="86" cy="86" fill="transparent" stroke="#e0e0e0" stroke-width="30"></circle>
-            <circle r="76" cx="86" cy="86" stroke="#e0e0e0" stroke-width="30" stroke-linecap="round"
-              stroke-dashoffset="368px" fill="transparent" stroke-dasharray="477.28000000000003px"></circle>
-            <text x="72px" y="102px" fill="#000000" font-size="48px" font-weight="bold"
-              style="transform: rotate(90deg) translate(0px, -168px)">
-              0
-            </text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <div class="spacer"></div>
-
-    <div class="buttons_container">
-      <div class="spacer_2"></div>
-
-      <button class="button_download gray">
-        <p>Download PDF</p>
-      </button>
-
-      <button class="button_varsle gray">
-        <p>Varsle Datatilsynet</p>
-      </button>
-    </div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section id="section3" class="hidden">
-    <div class="text_container">
-      <!-- Basic Settings -->
-      <div class="text_setting_containers">
-        <p>Whitelist for site</p>
-        <div>
-          <button class="toggle_button" id="whitelist_button" aria-pressed="false"
-            aria-label="turn on / off whitelist setting for site"></button>
-        </div>
-      </div>
-
-      <div class="text_setting_containers">
-        <p>Automatically Popup</p>
-        <div>
-          <button class="toggle_button" id="automatic_popup_button" aria-pressed="true"
-            aria-label="turn on / off automatic popup"></button>
-        </div>
-      </div>
-
-      <div class="text_setting_containers">
-        <p>Automatically Rapport</p>
-        <div>
-          <button class="toggle_button" id="report_button" aria-pressed="false"
-            aria-label="turn on / off sending a report Automatically"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <div class="resize_container">
-    <svg width="0.75rem" height="0.75rem" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-      <g transform="translate(18 0) scale(-1 1)">
-        <path fill="#494c4e"
-          d="M14.228 16.227a1 1 0 0 1-.707-1.707l1-1a1 1 0 0 1 1.416 1.414l-1 1a1 1 0 0 1-.707.293zm-5.638 0a1 1 0 0 1-.707-1.707l6.638-6.638a1 1 0 0 1 1.416 1.414l-6.638 6.638a1 1 0 0 1-.707.293zm-5.84 0a1 1 0 0 1-.707-1.707L14.52 2.043a1 1 0 1 1 1.415 1.414L3.457 15.934a1 1 0 0 1-.707.293z" />
-      </g>
-    </svg>
-  </div>
+    <script src="readmore.js"></script>
 </body>
 
 </html>
-<script src="./popup.js"></script>
-<script src="./cookies_tests/test_banner_readability.js"></script>
-<script src="./cookies_tests/test_withdraw_icon.js"></script>
-<script src="./cookies_tests/test_legitimate_interest.js"></script>
-<script src="./cookies_tests/test_layering.js"></script>
