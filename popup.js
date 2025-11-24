@@ -27,6 +27,8 @@
 //   }
 // });
 
+let realResults = [];
+
 function computeSiteScore(results) {
   if (!results.length) return 0;
 
@@ -60,6 +62,7 @@ function updateScoreCircle(score) {
 
 chrome.storage.local.get(["latestResults"], ({ latestResults }) => {
   if (latestResults) {
+    realResults = latestResults;
     const score = computeSiteScore(latestResults);
     updateScoreCircle(score);
   }
@@ -182,6 +185,54 @@ document.getElementById("report_button").addEventListener("click", () => {
     saveSettings(settings);
   });
 });
+
+document.getElementById('download-pdf-btn').onclick = () => {
+  if (!realResults || !realResults.length) {
+    alert("No results to download!");
+    return;
+  }
+
+  // Using jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(18);
+  doc.text("Accessibility Test Results", 14, 20);
+
+  let y = 30; // start y position
+  doc.setFontSize(12);
+
+  realResults.forEach((res, index) => {
+    const { check, passed, severity, message } = res;
+    const title = testNameToTitle(check);
+    const status = passed ? "Passed" : "Failed";
+    const severityLabel = mapSeverityToLabel(severity) || "N/A";
+
+    const line = `${index + 1}. ${title} — ${status} — Severity: ${severityLabel}`;
+    doc.text(line, 14, y);
+    y += 8;
+
+    // Add message if present
+    if (message) {
+      doc.text(`    Message: ${message}`, 14, y);
+      y += 6;
+    }
+
+    // Avoid going off-page
+    if (y > 280) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+
+  // Add summary at the bottom
+  const score = computeSiteScore(realResults);
+  doc.setFontSize(14);
+  doc.text(`\nOverall Non-compliance Score: ${score}%`, 14, y + 10);
+
+  // Save PDF
+  doc.save("test_results.pdf");
+};
 
 // open new page for read more page
 document.addEventListener('DOMContentLoaded', () => {

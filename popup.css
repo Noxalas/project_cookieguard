@@ -154,11 +154,17 @@ header svg.active {
 }
 
 .exit_settings{
-    padding-left: 10px;
-    padding-top: 10px;
+    display: inline-block;
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
 }
 .exit_settings:hover{
-    cursor: pointer;
+    background-color: #e0e0e0;
 }
 
 
