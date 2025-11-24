@@ -68,9 +68,10 @@ export async function runCheck(doc) {
   const result = {
     check: CHECK_NAME,
     passed: Boolean(match),
+    severity: [3, 3],
     message: match
-      ? "Withdraw/consent management button or link detected."
-      : "No withdraw/consent management option detected.",
+      ? "Withdraw consent options was detected."
+      : "No option to withdraw consent was detected.",
     details: {
       found: Boolean(match),
       elementText: match ? (match.innerText || "").trim() : null,

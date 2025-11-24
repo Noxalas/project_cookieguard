@@ -92,6 +92,7 @@ export async function runCheck(doc) {
   const result = {
     check: CHECK_NAME,
     passed: score >= 66,
+    severity: [4, 4],
     message:
       score >= 66
         ? "Legitimate interest information appears adequately presented."
